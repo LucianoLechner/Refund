@@ -5,8 +5,6 @@ const category = document.getElementById('category') // Categoria da despesa
 const expenseQtd = document.querySelector('aside header p span')
 const expensesTotal = document.querySelector('aside header h2')
 
-
-
 const expenseList = document.querySelector('ul');
 
 //CAPTURANDO O EVENTO DO INPUT PARA FORMATAR O VALOR
@@ -46,6 +44,10 @@ form.onsubmit = (event) => {
 
 // funcao para adicionar item na lista
 function expenseAdd(newExpense){
+
+    if (expense.value === ''){
+        expense.style.outlineColor = "red";
+    }
 
     try {
         const expenseItem = document.createElement('li') // cria o li
@@ -102,12 +104,24 @@ function updateTotals(){
         total += value;
     }
 
-    expensesTotal.textContent = total;
+    expensesTotal.textContent = formatCurrencyBRL(total);
 
     } catch (error) {
         console.log(error)
     }
 }
+
+expenseList.addEventListener('click', function(e){
+    
+    if(e.target.classList.contains('remove-icon')){
+        const item = e.target.closest('.expense')
+        // guarda na variavel o pai mais proximo do elemento que contem a classe remove-icon.
+
+        item.remove(); // metodo que remove o elemento pai. 
+    }
+
+    updateTotals(); // atualiza o valor da lista com a chamada da função.
+})
 
 
 

@@ -218,6 +218,10 @@ aside ul {
   height: 38px;
 }
 
+.outline-input{
+  outline: 1px solid transparent;
+}
+
 .expense img:first-child {
   width: 2rem;
   height: 2rem;
